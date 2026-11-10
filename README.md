@@ -61,6 +61,8 @@ These controls are available under **Staking pools → SQK · Squeekchain**.
 
 ## Hosting and storage
 
+For a Vercel frontend with a Railway backend, follow **[DEPLOYMENT.md](DEPLOYMENT.md)**. `vercel.mjs` routes browser `/api` requests to `RAILWAY_API_URL`. Set Railway's `PUBLIC_ORIGIN` to the Vercel production origin so wallet sign-in and API origin checks agree. SQLite stays on Railway's `/data` volume; migrate the existing game database before switching players over.
+
 `Dockerfile` and `railway.toml` are provided for a persistent deployment. Mount a durable volume at `/data`; do not run independent replicas with separate SQLite databases. Back up the database, including the saved Merkle trees: losing those trees can make published points unavailable to prove. WAL mode is enabled.
 
 | Variable          | Default                        | Purpose                                                                                                                                            |
@@ -69,7 +71,8 @@ These controls are available under **Staking pools → SQK · Squeekchain**.
 | `DATA_DIR`        | `data` (Docker: `/data`)       | SQLite storage directory                                                                                                                           |
 | `ADMIN_ADDRESS`   | Owner-selected wallet above    | Trusted game administrator                                                                                                                         |
 | `RPC_URL`         | Public Sepolia RPC failover    | Server chain reads and simulations                                                                                                                 |
-| `PUBLIC_ORIGIN`   | Request origin                 | Optional canonical HTTPS origin for sign-in messages                                                                                               |
+| `PUBLIC_ORIGIN`   | Request origin                 | Canonical website origin for sign-in messages and browser API writes. Set to the Vercel production origin when proxying from Vercel.                 |
+| `RAILWAY_API_URL` | Required on Vercel              | Railway public HTTPS origin used by Vercel's API rewrite. Not required on Railway itself.                                                            |
 | `REWARD_CONTRACT` | Verified deployed HAMS address | Optional override when no database registration exists; still bytecode-checked. An explicitly empty value disables the default for isolated tests. |
 
 Serve over HTTPS. The production server uses HttpOnly, Secure, SameSite=Strict cookies, request origin checks, a restrictive content security policy and API rate limits. It does not add a separate website sign-in gate; wallet authentication only controls play and account actions.

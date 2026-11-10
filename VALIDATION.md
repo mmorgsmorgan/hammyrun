@@ -1,7 +1,7 @@
 # Validation — 10 November 2026
 
 - Production build and TypeScript checks passed.
-- Eight Node test cases passed, including complete API/contract integration flows on local Anvil chains configured with chain ID 11155111.
+- Ten Node test cases passed, including complete API/contract integration flows on local Anvil chains configured with chain ID 11155111 and the frontend-proxy origin checks.
 - The integration case exercised wallet authentication, nonce replay rejection, forged signatures, real-time score bounds, deterministic replay, idempotent score submission, owner-only publication, wallet-bound proofs, double-spend rejection, lock expiry, reward claims, duplicate claim rejection and the HAMS cap.
 - Interactive browser checks passed for wallet sign-in, keyboard/double-jump controls, pause/resume, preserving a paused run across navigation, verified score saving, leaderboard, admin isolation, disconnect and modal focus behavior.
 - Responsive checks covered widths 320, 390, 768, 844 and 1440 pixels. The final 390px public check measured a 350px game frame and 348px canvas/intro, without document overflow.
@@ -40,3 +40,11 @@ The owner deployed and registered **0xa20e79fcb0e08e33e424c2521ed9472e051b421c**
 At that block the pool had zero staked HAMS and zero funded rewards, and the owner's HAMS wallet balance was zero. Funding remains a separate owner-wallet action after obtaining HAMS from the point rewards. `scripts/inspect-hams-pool.mjs` provides a repeatable read-only check of deployment identity, ownership, token binding, balances and solvency. The verified deployment is recorded in `deployments/hams-pool-sepolia.json`.
 
 Post-deployment public browser checks passed: the live HAMS pool card reads the registered address, ordinary players cannot see owner funding/deployment controls, secure wallet sign-in and live SQK verification work, and no browser errors were observed. A point-ledger read at block 12106661 found 291 published/used points for the owner, plus 46 newly collected points awaiting publication.
+
+## Vercel frontend with Railway API
+
+The repository now includes `vercel.mjs`, which serves the Vite build and forwards `/api` requests to the configured `RAILWAY_API_URL`. Railway's `PUBLIC_ORIGIN` defines the frontend origin used by both wallet sign-in messages and API write checks. API responses carry explicit browser and CDN `no-store` headers. The backend and SQLite remain on Railway.
+
+The production build and all ten automated tests passed. The complete authentication, verified score, publication, point lock and claim integration test now runs through a distinct frontend proxy with a different host from its backend. It confirms that the sign-in message identifies the frontend, session cookies can be forwarded, unrelated origins are rejected, and API responses are not cacheable. Configuration tests reject invalid backend URLs and spoofed forwarded-host authorization.
+
+These are local integration checks. Final live Vercel-to-Railway verification and migration of the existing SQLite database require the actual service domains and deployment access. Instructions are in `DEPLOYMENT.md`.

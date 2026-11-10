@@ -22,6 +22,7 @@ import {
   record,
 } from "./chain.mjs";
 import { gameAddress, gameContract } from "./game-chain.mjs";
+import { createOriginPolicy } from "./origin.mjs";
 import {
   poolAddress,
   poolSnapshot,
@@ -32,6 +33,7 @@ import {
 
 const app = express(),
   production = process.env.NODE_ENV === "production";
+const originPolicy = createOriginPolicy(process.env.PUBLIC_ORIGIN);
 const ADMIN = getAddress(
   process.env.ADMIN_ADDRESS || "0xB804d506d5446b1A3BeBEfC903D84F754973C2D2",
 );
@@ -72,11 +74,9 @@ app.use(
 );
 app.use("/api", (req, res, next) => {
   res.set("Cache-Control", "no-store");
-  if (
-    req.method === "POST" &&
-    req.headers.origin &&
-    req.headers.origin !== `${req.protocol}://${req.get("host")}`
-  )
+  res.set("CDN-Cache-Control", "no-store");
+  res.set("Vercel-CDN-Cache-Control", "no-store");
+  if (req.method === "POST" && !originPolicy.allows(req))
     return res.status(403).json({ error: "Origin mismatch." });
   next();
 });
@@ -136,8 +136,7 @@ app.post(
     const address = cleanAddress(req.body.address),
       id = randomUUID(),
       expires = Date.now() + 300000;
-    const origin =
-      process.env.PUBLIC_ORIGIN || `${req.protocol}://${req.get("host")}`;
+    const origin = originPolicy.originFor(req);
     const message = `${new URL(origin).host} wants you to sign in with your Ethereum account:\n${getAddress(address)}\n\nSign in to Hammy Run to save verified game scores. This does not authorize any transaction.\n\nURI: ${origin}\nVersion: 1\nChain ID: 11155111\nNonce: ${randomBytes(16).toString("hex")}\nIssued At: ${new Date().toISOString()}\nExpiration Time: ${new Date(expires).toISOString()}`;
     db.prepare("INSERT INTO challenges VALUES(?,?,?,?)").run(
       id,

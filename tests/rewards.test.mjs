@@ -4,6 +4,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { spawn } from "node:child_process";
+import { createServer, request as proxyRequest } from "node:http";
 import { setTimeout as wait } from "node:timers/promises";
 import {
   createPublicClient,
@@ -19,11 +20,11 @@ const artifact = JSON.parse(
   fs.readFileSync("src/generated/HammyRewards.json", "utf8"),
 );
 test(
-  "full reward path: wallet authentication, verified run, publication, point lock and HAMS claim",
+  "full reward path through a separate frontend proxy: wallet authentication, verified run, publication, point lock and HAMS claim",
   { timeout: 60000 },
   async (t) => {
     const rpc = "http://127.0.0.1:9545",
-      base = "http://127.0.0.1:4312";
+      base = "http://127.0.0.1:4313";
     // Local ephemeral accounts remain in Anvil. The tests never read or handle private keys.
     const anvil = spawn(
       process.env.ANVIL_BIN || "/home/chief/.foundry/bin/anvil",
@@ -77,10 +78,35 @@ test(
         ADMIN_ADDRESS: owner,
         RPC_URL: rpc,
         REWARD_CONTRACT: "",
+        PUBLIC_ORIGIN: base,
       },
       stdio: "ignore",
     });
     t.after(() => server.kill());
+    const proxy = createServer((req, res) => {
+      const upstream = proxyRequest(
+        `http://127.0.0.1:4312${req.url}`,
+        {
+          method: req.method,
+          headers: {
+            ...req.headers,
+            host: "127.0.0.1:4312",
+            "x-forwarded-host": "127.0.0.1:4313",
+          },
+        },
+        (response) => {
+          res.writeHead(response.statusCode, response.headers);
+          response.pipe(res);
+        },
+      );
+      upstream.on("error", () => {
+        res.writeHead(502);
+        res.end();
+      });
+      req.pipe(upstream);
+    });
+    await new Promise((resolve) => proxy.listen(4313, "127.0.0.1", resolve));
+    t.after(() => proxy.close());
     for (let i = 0; i < 40; i++) {
       try {
         if ((await fetch(base + "/api/health")).ok) break;
@@ -91,17 +117,41 @@ test(
     async function api(route, body, expected = 200) {
       const r = await fetch(base + "/api" + route, {
         method: body === undefined ? "GET" : "POST",
-        headers: { "Content-Type": "application/json", Cookie: cookie },
+        headers: {
+          "Content-Type": "application/json",
+          Cookie: cookie,
+          Origin: base,
+        },
         body: body === undefined ? undefined : JSON.stringify(body),
       });
       const j = await r.json();
       assert.equal(r.status, expected, JSON.stringify(j));
+      assert.equal(r.headers.get("cache-control"), "no-store");
+      assert.equal(r.headers.get("vercel-cdn-cache-control"), "no-store");
       if (r.headers.get("set-cookie"))
         cookie = r.headers.get("set-cookie").split(";")[0];
       return j;
     }
     await api("/runs", {}, 401);
+    const foreign = await fetch(base + "/api/auth/challenge", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Origin: "https://untrusted.example",
+        "X-Forwarded-Host": "untrusted.example",
+      },
+      body: JSON.stringify({ address: owner }),
+    });
+    assert.equal(
+      foreign.status,
+      403,
+      "An untrusted origin must not pass through the proxy",
+    );
     const challenge = await api("/auth/challenge", { address: owner });
+    assert.ok(
+      challenge.message.startsWith("127.0.0.1:4313 wants you to sign in"),
+    );
+    assert.ok(challenge.message.includes(`URI: ${base}`));
     const signature = await wc.signMessage({ message: challenge.message });
     await api("/auth/verify", { id: challenge.id, signature });
     await api("/auth/verify", { id: challenge.id, signature }, 401);
