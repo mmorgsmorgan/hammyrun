@@ -1,0 +1,801 @@
+[
+  {
+    "type": "constructor",
+    "inputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "MAX_CHECKPOINT_ROUNDS",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "SUPPLY_CAP",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "bindStaking",
+    "inputs": [
+      {
+        "name": "staking_",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "bindings",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "tuple",
+        "internalType": "struct MiningBindings",
+        "components": [
+          {
+            "name": "core",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "token",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "staking",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "governance",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "streamId",
+            "type": "bytes32",
+            "internalType": "bytes32"
+          },
+          {
+            "name": "genesisTimestamp",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "minimumTimelockDelay",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "maxWorkPerRound",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "initialWorkPerThousandBlocks",
+            "type": "uint32",
+            "internalType": "uint32"
+          },
+          {
+            "name": "premint",
+            "type": "uint128",
+            "internalType": "uint128"
+          }
+        ]
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "checkpoint",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "checkpointStatus",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "corePaused",
+        "type": "bool",
+        "internalType": "bool"
+      },
+      {
+        "name": "nextRound",
+        "type": "uint64",
+        "internalType": "uint64"
+      },
+      {
+        "name": "roundSettled",
+        "type": "bool",
+        "internalType": "bool"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "completeBootstrap",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "core",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "implementationCodeAddress",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "implementationCodeVersion",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint64",
+        "internalType": "uint64"
+      }
+    ],
+    "stateMutability": "pure"
+  },
+  {
+    "type": "function",
+    "name": "implementationStorageLayoutDigest",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "stateMutability": "pure"
+  },
+  {
+    "type": "function",
+    "name": "initialize",
+    "inputs": [
+      {
+        "name": "config",
+        "type": "tuple",
+        "internalType": "struct MiningLaunchConfig",
+        "components": [
+          {
+            "name": "core",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "token",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "streamId",
+            "type": "bytes32",
+            "internalType": "bytes32"
+          },
+          {
+            "name": "governance",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "minimumTimelockDelay",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "guardian",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "launchBonus",
+            "type": "uint128",
+            "internalType": "uint128"
+          },
+          {
+            "name": "bonusBlocks",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "halvingBlocks",
+            "type": "uint64",
+            "internalType": "uint64"
+          }
+        ]
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "issuanceSchedule",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "schedule",
+        "type": "tuple",
+        "internalType": "struct MiningIssuanceSchedule",
+        "components": [
+          {
+            "name": "allowance",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "launchBonus",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "bonusBlocks",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "halvingBlocks",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "firstPeriodRate",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "startHeight",
+            "type": "uint64",
+            "internalType": "uint64"
+          }
+        ]
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "issued",
+    "inputs": [
+      {
+        "name": "blocksSinceStart",
+        "type": "uint64",
+        "internalType": "uint64"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "pause",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "proxyAdmin",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "admin",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "setGuardian",
+    "inputs": [
+      {
+        "name": "guardian",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "start",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "startRound",
+        "type": "uint64",
+        "internalType": "uint64"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "state",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "tuple",
+        "internalType": "struct MiningState",
+        "components": [
+          {
+            "name": "minted",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "processedThroughRound",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "startRound",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "startHeight",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "fundedBlocks",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "guardian",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "bootstrapped",
+            "type": "bool",
+            "internalType": "bool"
+          },
+          {
+            "name": "startCaptured",
+            "type": "bool",
+            "internalType": "bool"
+          },
+          {
+            "name": "paused",
+            "type": "bool",
+            "internalType": "bool"
+          },
+          {
+            "name": "active",
+            "type": "bool",
+            "internalType": "bool"
+          }
+        ]
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "unpause",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "event",
+    "name": "Checkpointed",
+    "inputs": [
+      {
+        "name": "throughRound",
+        "type": "uint64",
+        "indexed": true,
+        "internalType": "uint64"
+      },
+      {
+        "name": "fundedBlocks",
+        "type": "uint64",
+        "indexed": false,
+        "internalType": "uint64"
+      },
+      {
+        "name": "amount",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "Initialized",
+    "inputs": [
+      {
+        "name": "version",
+        "type": "uint64",
+        "indexed": false,
+        "internalType": "uint64"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "MiningBootstrapped",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "MiningGuardianChanged",
+    "inputs": [
+      {
+        "name": "previousGuardian",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "newGuardian",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "MiningInitialized",
+    "inputs": [
+      {
+        "name": "core",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "streamId",
+        "type": "bytes32",
+        "indexed": true,
+        "internalType": "bytes32"
+      },
+      {
+        "name": "governance",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "MiningPaused",
+    "inputs": [
+      {
+        "name": "caller",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "MiningStarted",
+    "inputs": [
+      {
+        "name": "startRound",
+        "type": "uint64",
+        "indexed": false,
+        "internalType": "uint64"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "MiningUnpaused",
+    "inputs": [
+      {
+        "name": "caller",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "StakingBound",
+    "inputs": [
+      {
+        "name": "staking",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "StakingFunded",
+    "inputs": [
+      {
+        "name": "fromBlock",
+        "type": "uint64",
+        "indexed": true,
+        "internalType": "uint64"
+      },
+      {
+        "name": "toBlock",
+        "type": "uint64",
+        "indexed": true,
+        "internalType": "uint64"
+      },
+      {
+        "name": "amount",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "error",
+    "name": "BindingCallFailed",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "BootstrapAlreadyComplete",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "BootstrapIncomplete",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "CoreFutureRound",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "CoreIdentityMismatch",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "CoreInconsistent",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "CorePaused",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "CoreRegression",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "CoreUnavailable",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "EmergencyPaused",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "FundingMismatch",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "InvalidConfiguration",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "InvalidGraphAdmin",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "InvalidGuardian",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "InvalidInitialization",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "InvalidProxyAdmin",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "InvalidProxyContext",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "InvalidProxyRuntime",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "InvalidStaking",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "InvalidStakingAdmin",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "InvalidStakingImplementation",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "InvalidToken",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "MintMismatch",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "NotInitializing",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "NotPaused",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "ReentrantCall",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "SafeCastOverflowedUintDowncast",
+    "inputs": [
+      {
+        "name": "bits",
+        "type": "uint8",
+        "internalType": "uint8"
+      },
+      {
+        "name": "value",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "SafeERC20FailedOperation",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "StakingAlreadyBound",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "StakingNotBound",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "StartAlreadyScheduled",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "StartNotScheduled",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "TokenSupplyMismatch",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "Unauthorized",
+    "inputs": []
+  }
+]

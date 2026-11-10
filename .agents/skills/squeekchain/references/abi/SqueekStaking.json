@@ -1,0 +1,1523 @@
+[
+  {
+    "type": "constructor",
+    "inputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "MAX_TOKENS",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "POWER_UNIT",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "accountPower",
+    "inputs": [
+      {
+        "name": "account",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "nftPower",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "sqkPower",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "basePower",
+    "inputs": [
+      {
+        "name": "collection",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "level",
+        "type": "uint8",
+        "internalType": "uint8"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint64",
+        "internalType": "uint64"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "bindClones",
+    "inputs": [
+      {
+        "name": "clones_",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "basePower_",
+        "type": "uint64[]",
+        "internalType": "uint64[]"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "claim",
+    "inputs": [
+      {
+        "name": "account",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "amount",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "claimAndStake",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "amount",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "claimRecipient",
+    "inputs": [
+      {
+        "name": "account",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "claimable",
+    "inputs": [
+      {
+        "name": "account",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "clones",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "core",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "deposit",
+    "inputs": [
+      {
+        "name": "collection",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "tokenIds",
+        "type": "uint256[]",
+        "internalType": "uint256[]"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "depositor",
+    "inputs": [
+      {
+        "name": "collection",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "tokenId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "exitPolicy",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "tuple",
+        "internalType": "struct StakingExitPolicy",
+        "components": [
+          {
+            "name": "minBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "maxBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "saturationBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "windowDays",
+            "type": "uint8",
+            "internalType": "uint8"
+          },
+          {
+            "name": "pressureFloor",
+            "type": "uint128",
+            "internalType": "uint128"
+          }
+        ]
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "fund",
+    "inputs": [
+      {
+        "name": "amount",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "genesis",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "governance",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "implementationCodeAddress",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "implementationCodeVersion",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint64",
+        "internalType": "uint64"
+      }
+    ],
+    "stateMutability": "pure"
+  },
+  {
+    "type": "function",
+    "name": "implementationStorageLayoutDigest",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "stateMutability": "pure"
+  },
+  {
+    "type": "function",
+    "name": "initialize",
+    "inputs": [
+      {
+        "name": "init",
+        "type": "tuple",
+        "internalType": "struct StakingInitialization",
+        "components": [
+          {
+            "name": "mining",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "token",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "core",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "governance",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "genesis",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "genesisBasePower",
+            "type": "uint64[]",
+            "internalType": "uint64[]"
+          },
+          {
+            "name": "sqkPerPower",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "referencePower",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "exitPolicy",
+            "type": "tuple",
+            "internalType": "struct StakingExitPolicy",
+            "components": [
+              {
+                "name": "minBps",
+                "type": "uint16",
+                "internalType": "uint16"
+              },
+              {
+                "name": "maxBps",
+                "type": "uint16",
+                "internalType": "uint16"
+              },
+              {
+                "name": "saturationBps",
+                "type": "uint16",
+                "internalType": "uint16"
+              },
+              {
+                "name": "windowDays",
+                "type": "uint8",
+                "internalType": "uint8"
+              },
+              {
+                "name": "pressureFloor",
+                "type": "uint128",
+                "internalType": "uint128"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "launchReady",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool",
+        "internalType": "bool"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "mergeDeposited",
+    "inputs": [
+      {
+        "name": "collection",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "survivor",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "donor",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "mining",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "onERC721Received",
+    "inputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "from",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "tokenId",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "data",
+        "type": "bytes",
+        "internalType": "bytes"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes4",
+        "internalType": "bytes4"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "pause",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "paused",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool",
+        "internalType": "bool"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "powerParameters",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "sqkPerPower",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "referencePower",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "quotePower",
+    "inputs": [
+      {
+        "name": "principal",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "nftPower",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "quoteUnstake",
+    "inputs": [
+      {
+        "name": "account",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "amount",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "fee",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "net",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "recentExits",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "recover",
+    "inputs": [
+      {
+        "name": "collection",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "tokenId",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "to",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "rewardState",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "tuple",
+        "internalType": "struct StakingRewardState",
+        "components": [
+          {
+            "name": "funded",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "paid",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "compounded",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "rewardIndex",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "remaining",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "totalNftPower",
+            "type": "uint128",
+            "internalType": "uint128"
+          },
+          {
+            "name": "totalSqkPower",
+            "type": "uint128",
+            "internalType": "uint128"
+          },
+          {
+            "name": "streamRate",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "lastAccruedAt",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "streamEndsAt",
+            "type": "uint64",
+            "internalType": "uint64"
+          }
+        ]
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "saleCustodian",
+    "inputs": [
+      {
+        "name": "collection",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "setClaimRecipient",
+    "inputs": [
+      {
+        "name": "recipient",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "stake",
+    "inputs": [
+      {
+        "name": "amount",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "stakeOf",
+    "inputs": [
+      {
+        "name": "account",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "principal",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "freshPrincipal",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "freshUntilRound",
+        "type": "uint64",
+        "internalType": "uint64"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "token",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "totalFresh",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "freshPrincipal",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "freshUntilRound",
+        "type": "uint64",
+        "internalType": "uint64"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "totalStaked",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "unpause",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "unstake",
+    "inputs": [
+      {
+        "name": "amount",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "maxFee",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "deadline",
+        "type": "uint64",
+        "internalType": "uint64"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "net",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "withdraw",
+    "inputs": [
+      {
+        "name": "collection",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "tokenIds",
+        "type": "uint256[]",
+        "internalType": "uint256[]"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "event",
+    "name": "ClaimRecipientSet",
+    "inputs": [
+      {
+        "name": "account",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "recipient",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "ClaimedAndStaked",
+    "inputs": [
+      {
+        "name": "account",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "amount",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "principal",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "freshUntilRound",
+        "type": "uint64",
+        "indexed": false,
+        "internalType": "uint64"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "CollectionBound",
+    "inputs": [
+      {
+        "name": "collection",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "basePower",
+        "type": "uint64[]",
+        "indexed": false,
+        "internalType": "uint64[]"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "Deposited",
+    "inputs": [
+      {
+        "name": "account",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "collection",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "tokenId",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      },
+      {
+        "name": "level",
+        "type": "uint8",
+        "indexed": false,
+        "internalType": "uint8"
+      },
+      {
+        "name": "basePower",
+        "type": "uint64",
+        "indexed": false,
+        "internalType": "uint64"
+      },
+      {
+        "name": "power",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "DepositedMerge",
+    "inputs": [
+      {
+        "name": "account",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "collection",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "survivor",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      },
+      {
+        "name": "donor",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "level",
+        "type": "uint8",
+        "indexed": false,
+        "internalType": "uint8"
+      },
+      {
+        "name": "powerDelta",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "Initialized",
+    "inputs": [
+      {
+        "name": "version",
+        "type": "uint64",
+        "indexed": false,
+        "internalType": "uint64"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "IntakePaused",
+    "inputs": [
+      {
+        "name": "guardian",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "IntakeResumed",
+    "inputs": [],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "PowerChanged",
+    "inputs": [
+      {
+        "name": "account",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "nftPower",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "sqkPower",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "Recovered",
+    "inputs": [
+      {
+        "name": "collection",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "tokenId",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      },
+      {
+        "name": "to",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "RewardClaimed",
+    "inputs": [
+      {
+        "name": "account",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "recipient",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "amount",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "RewardFunded",
+    "inputs": [
+      {
+        "name": "amount",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "remaining",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "streamEndsAt",
+        "type": "uint64",
+        "indexed": false,
+        "internalType": "uint64"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "Staked",
+    "inputs": [
+      {
+        "name": "account",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "amount",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "principal",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "freshUntilRound",
+        "type": "uint64",
+        "indexed": false,
+        "internalType": "uint64"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "Unstaked",
+    "inputs": [
+      {
+        "name": "account",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "amount",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "fee",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "net",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "Withdrawn",
+    "inputs": [
+      {
+        "name": "account",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "collection",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "tokenId",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      },
+      {
+        "name": "level",
+        "type": "uint8",
+        "indexed": false,
+        "internalType": "uint8"
+      },
+      {
+        "name": "basePower",
+        "type": "uint64",
+        "indexed": false,
+        "internalType": "uint64"
+      },
+      {
+        "name": "power",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "error",
+    "name": "BindingCallFailed",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "ClonesAlreadyBound",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "CoreInconsistent",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "CoreUnavailable",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "CustodyMismatch",
+    "inputs": [
+      {
+        "name": "collection",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "tokenId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "CustodyShortfall",
+    "inputs": [
+      {
+        "name": "balance",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "required",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "DeadlineExpired",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "EmergencyPaused",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "ExclusiveClaimRecipient",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "FeeLimitExceeded",
+    "inputs": [
+      {
+        "name": "fee",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "maxFee",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "InvalidBasePower",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "InvalidBinding",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "InvalidBounds",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "InvalidClaimRecipient",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "InvalidCollection",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "InvalidCollectionRuntime",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "InvalidDeposit",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "InvalidExitPolicy",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "InvalidFunding",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "InvalidGovernance",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "InvalidInitialization",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "InvalidLevel",
+    "inputs": [
+      {
+        "name": "collection",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "tokenId",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "level",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "InvalidMining",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "InvalidProxyContext",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "InvalidStake",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "InvalidUnstake",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "InvalidWithdrawal",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "NotInitializing",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "ReentrantCall",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "RegisteredToken",
+    "inputs": [
+      {
+        "name": "collection",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "tokenId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "SafeCastOverflowedUintDowncast",
+    "inputs": [
+      {
+        "name": "bits",
+        "type": "uint8",
+        "internalType": "uint8"
+      },
+      {
+        "name": "value",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "SafeERC20FailedOperation",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "Unauthorized",
+    "inputs": []
+  }
+]

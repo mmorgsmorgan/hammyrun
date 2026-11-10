@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "error": {
+      "type": "string",
+      "pattern": "^[a-z0-9_]{1,64}$"
+    }
+  },
+  "required": [
+    "error"
+  ],
+  "additionalProperties": false,
+  "$defs": {},
+  "$comment": "Public structure generated from current packages/module-contracts. See endpoint notes for semantic constraints."
+}

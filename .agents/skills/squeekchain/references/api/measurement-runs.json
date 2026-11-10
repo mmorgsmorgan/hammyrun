@@ -1,0 +1,221 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "installationId",
+    "generatedAt",
+    "authority",
+    "certifiedCoreWork",
+    "freshness",
+    "latestObservedAt",
+    "coverageStartAt",
+    "coverageThroughAt",
+    "items",
+    "nextCursor"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "measurement-runs.v1"
+    },
+    "installationId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "authority": {
+      "const": "pi-device-key"
+    },
+    "certifiedCoreWork": {
+      "const": false
+    },
+    "freshness": {
+      "enum": [
+        "fresh",
+        "stale",
+        "unavailable"
+      ]
+    },
+    "latestObservedAt": {
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "date-time"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "coverageStartAt": {
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "date-time"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "coverageThroughAt": {
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "date-time"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "items": {
+      "type": "array",
+      "maxItems": 100,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "segmentId",
+          "continuityId",
+          "discontinuity",
+          "startAt",
+          "endAt",
+          "workUnits",
+          "maxGapMs",
+          "previousAt",
+          "boundaryGapNs",
+          "passages",
+          "provenance",
+          "profile",
+          "observedAt",
+          "receivedAt",
+          "measurementEligible"
+        ],
+        "properties": {
+          "segmentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "continuityId": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "discontinuity": {
+            "type": "boolean"
+          },
+          "startAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "workUnits": {
+            "type": "string",
+            "pattern": "^(0|[1-9][0-9]*)$",
+            "maxLength": 78,
+            "format": "uint256-decimal"
+          },
+          "maxGapMs": {
+            "type": "string",
+            "pattern": "^(0|[1-9][0-9]*)$",
+            "maxLength": 78,
+            "format": "uint256-decimal"
+          },
+          "previousAt": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "boundaryGapNs": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^(0|[1-9][0-9]*)$",
+                "maxLength": 78,
+                "format": "uint256-decimal"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "passages": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 100,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "at",
+                "offsetNs"
+              ],
+              "properties": {
+                "at": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "offsetNs": {
+                  "type": "string",
+                  "pattern": "^(0|[1-9][0-9]*)$",
+                  "maxLength": 78,
+                  "format": "uint256-decimal"
+                }
+              }
+            }
+          },
+          "provenance": {
+            "enum": [
+              "hardware",
+              "simulated",
+              "replay",
+              "derived"
+            ]
+          },
+          "profile": {
+            "enum": [
+              "development",
+              "staging",
+              "shadow",
+              "production"
+            ]
+          },
+          "observedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "receivedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "measurementEligible": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "nextCursor": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 1024
+    }
+  },
+  "$defs": {},
+  "$comment": "Public structure generated from current packages/module-contracts. See endpoint notes for semantic constraints."
+}

@@ -1,0 +1,668 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/d0_available"
+    },
+    {
+      "$ref": "#/$defs/d21_unavailable"
+    }
+  ],
+  "$defs": {
+    "d1_timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "d3_decimal": {
+      "type": "string",
+      "format": "uint256-decimal"
+    },
+    "d2_chain": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "target",
+        "chainId",
+        "confirmations",
+        "deploymentBlock",
+        "indexedThroughBlock",
+        "safeThroughBlock"
+      ],
+      "properties": {
+        "target": {
+          "enum": [
+            "anvil",
+            "sepolia",
+            "mainnet"
+          ]
+        },
+        "chainId": {
+          "$ref": "#/$defs/d3_decimal"
+        },
+        "confirmations": {
+          "const": "12"
+        },
+        "deploymentBlock": {
+          "$ref": "#/$defs/d3_decimal"
+        },
+        "indexedThroughBlock": {
+          "$ref": "#/$defs/d3_decimal"
+        },
+        "safeThroughBlock": {
+          "$ref": "#/$defs/d3_decimal"
+        }
+      }
+    },
+    "d4_window": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "startAt",
+        "endAt",
+        "bucketSeconds"
+      ],
+      "properties": {
+        "startAt": {
+          "$ref": "#/$defs/d1_timestamp"
+        },
+        "endAt": {
+          "$ref": "#/$defs/d1_timestamp"
+        },
+        "bucketSeconds": {
+          "enum": [
+            3600,
+            21600,
+            86400
+          ]
+        }
+      }
+    },
+    "d6_uint64": {
+      "type": "string",
+      "format": "uint64-decimal"
+    },
+    "d5_summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "settlementCount",
+        "activeRoundCount",
+        "workAdded",
+        "completedBlockCount",
+        "archivedSettlementCount"
+      ],
+      "properties": {
+        "settlementCount": {
+          "$ref": "#/$defs/d6_uint64"
+        },
+        "activeRoundCount": {
+          "$ref": "#/$defs/d6_uint64"
+        },
+        "workAdded": {
+          "$ref": "#/$defs/d6_uint64"
+        },
+        "completedBlockCount": {
+          "$ref": "#/$defs/d6_uint64"
+        },
+        "archivedSettlementCount": {
+          "$ref": "#/$defs/d6_uint64"
+        }
+      }
+    },
+    "d8_hash": {
+      "type": "string",
+      "pattern": "^0x[0-9a-f]{64}$"
+    },
+    "d9_uint96": {
+      "type": "string",
+      "format": "uint96-decimal"
+    },
+    "d10_uint256": {
+      "type": "string",
+      "format": "uint256-decimal"
+    },
+    "d7_settlement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "transactionHash",
+        "previousSettledThroughRound",
+        "settledThroughRound",
+        "activeRoundCount",
+        "workAdded",
+        "cumulativeWork",
+        "firstCompletedBlock",
+        "lastCompletedBlock",
+        "completedBlockCount",
+        "blockHeight",
+        "ethereumBlockNumber",
+        "blockTimestamp",
+        "logIndex",
+        "confirmationStatus",
+        "cumulativeBlockUnits"
+      ],
+      "properties": {
+        "transactionHash": {
+          "$ref": "#/$defs/d8_hash"
+        },
+        "previousSettledThroughRound": {
+          "$ref": "#/$defs/d6_uint64"
+        },
+        "settledThroughRound": {
+          "$ref": "#/$defs/d6_uint64"
+        },
+        "activeRoundCount": {
+          "$ref": "#/$defs/d6_uint64"
+        },
+        "workAdded": {
+          "$ref": "#/$defs/d6_uint64"
+        },
+        "cumulativeWork": {
+          "$ref": "#/$defs/d6_uint64"
+        },
+        "firstCompletedBlock": {
+          "$ref": "#/$defs/d6_uint64"
+        },
+        "lastCompletedBlock": {
+          "$ref": "#/$defs/d6_uint64"
+        },
+        "completedBlockCount": {
+          "$ref": "#/$defs/d6_uint64"
+        },
+        "blockHeight": {
+          "$ref": "#/$defs/d6_uint64"
+        },
+        "ethereumBlockNumber": {
+          "$ref": "#/$defs/d6_uint64"
+        },
+        "blockTimestamp": {
+          "$ref": "#/$defs/d1_timestamp"
+        },
+        "logIndex": {
+          "$ref": "#/$defs/d6_uint64"
+        },
+        "confirmationStatus": {
+          "const": "safe"
+        },
+        "cumulativeBlockUnits": {
+          "$ref": "#/$defs/d9_uint96"
+        },
+        "sqkMintedBaseUnits": {
+          "$ref": "#/$defs/d10_uint256"
+        }
+      }
+    },
+    "d11_bucket": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "startAt",
+        "endAt",
+        "settlementCount",
+        "activeRoundCount",
+        "workAdded",
+        "completedBlockCount"
+      ],
+      "properties": {
+        "startAt": {
+          "$ref": "#/$defs/d1_timestamp"
+        },
+        "endAt": {
+          "$ref": "#/$defs/d1_timestamp"
+        },
+        "settlementCount": {
+          "$ref": "#/$defs/d6_uint64"
+        },
+        "activeRoundCount": {
+          "$ref": "#/$defs/d6_uint64"
+        },
+        "workAdded": {
+          "$ref": "#/$defs/d6_uint64"
+        },
+        "completedBlockCount": {
+          "$ref": "#/$defs/d6_uint64"
+        },
+        "sqkMintedBaseUnits": {
+          "$ref": "#/$defs/d10_uint256"
+        }
+      }
+    },
+    "d15_address": {
+      "type": "string",
+      "pattern": "^0x[0-9a-f]{40}$"
+    },
+    "d14_economy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "releaseId",
+        "mining",
+        "token",
+        "symbol",
+        "decimals"
+      ],
+      "properties": {
+        "releaseId": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9._-]{2,127}$"
+        },
+        "mining": {
+          "$ref": "#/$defs/d15_address"
+        },
+        "token": {
+          "$ref": "#/$defs/d15_address"
+        },
+        "symbol": {
+          "const": "SQK"
+        },
+        "decimals": {
+          "const": 18
+        }
+      }
+    },
+    "d16_schedule": {
+      "type": "object",
+      "properties": {
+        "allowanceBaseUnits": {
+          "$ref": "#/$defs/d10_uint256"
+        },
+        "launchBonusBaseUnits": {
+          "$ref": "#/$defs/d10_uint256"
+        },
+        "bonusBlocks": {
+          "$ref": "#/$defs/d6_uint64"
+        },
+        "halvingBlocks": {
+          "$ref": "#/$defs/d6_uint64"
+        },
+        "firstPeriodRateBaseUnits": {
+          "$ref": "#/$defs/d10_uint256"
+        }
+      },
+      "required": [
+        "allowanceBaseUnits",
+        "launchBonusBaseUnits",
+        "bonusBlocks",
+        "halvingBlocks",
+        "firstPeriodRateBaseUnits"
+      ],
+      "additionalProperties": false
+    },
+    "d17_nextRound": {
+      "type": "object",
+      "properties": {
+        "state": {
+          "enum": [
+            "accruing",
+            "ready"
+          ]
+        },
+        "round": {
+          "$ref": "#/$defs/d6_uint64"
+        },
+        "countedThroughRound": {
+          "$ref": "#/$defs/d6_uint64"
+        },
+        "startsAt": {
+          "$ref": "#/$defs/d1_timestamp"
+        },
+        "endsAt": {
+          "$ref": "#/$defs/d1_timestamp"
+        },
+        "previousCumulativeBlockUnits": {
+          "$ref": "#/$defs/d9_uint96"
+        },
+        "cumulativeBlockUnits": {
+          "$ref": "#/$defs/d9_uint96"
+        },
+        "completedBlockCount": {
+          "$ref": "#/$defs/d6_uint64"
+        },
+        "amountBaseUnits": {
+          "$ref": "#/$defs/d10_uint256"
+        }
+      },
+      "required": [
+        "state",
+        "round",
+        "countedThroughRound",
+        "startsAt",
+        "endsAt",
+        "previousCumulativeBlockUnits",
+        "cumulativeBlockUnits",
+        "completedBlockCount",
+        "amountBaseUnits"
+      ],
+      "additionalProperties": false
+    },
+    "d18_checkpoint": {
+      "type": "object",
+      "properties": {
+        "afterRound": {
+          "$ref": "#/$defs/d6_uint64"
+        },
+        "throughRound": {
+          "$ref": "#/$defs/d6_uint64"
+        },
+        "completedBlockCount": {
+          "$ref": "#/$defs/d6_uint64"
+        },
+        "cumulativeWork": {
+          "$ref": "#/$defs/d6_uint64"
+        },
+        "cumulativeBlockUnits": {
+          "$ref": "#/$defs/d9_uint96"
+        },
+        "amountBaseUnits": {
+          "$ref": "#/$defs/d10_uint256"
+        },
+        "miningMintedBaseUnits": {
+          "$ref": "#/$defs/d10_uint256"
+        },
+        "transactionHash": {
+          "$ref": "#/$defs/d8_hash"
+        },
+        "ethereumBlockNumber": {
+          "$ref": "#/$defs/d6_uint64"
+        },
+        "blockTimestamp": {
+          "$ref": "#/$defs/d1_timestamp"
+        },
+        "logIndex": {
+          "$ref": "#/$defs/d6_uint64"
+        },
+        "confirmationStatus": {
+          "const": "safe"
+        }
+      },
+      "required": [
+        "afterRound",
+        "throughRound",
+        "completedBlockCount",
+        "cumulativeWork",
+        "cumulativeBlockUnits",
+        "amountBaseUnits",
+        "miningMintedBaseUnits",
+        "transactionHash",
+        "ethereumBlockNumber",
+        "blockTimestamp",
+        "logIndex",
+        "confirmationStatus"
+      ],
+      "additionalProperties": false
+    },
+    "d13_miningAvailable": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "const": "available"
+        },
+        "economy": {
+          "$ref": "#/$defs/d14_economy"
+        },
+        "supplyCap": {
+          "const": "2100000000000000000000000000"
+        },
+        "premintBaseUnits": {
+          "$ref": "#/$defs/d10_uint256"
+        },
+        "schedule": {
+          "$ref": "#/$defs/d16_schedule"
+        },
+        "startRound": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/d6_uint64"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "startHeight": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/d6_uint64"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "miningMintedBaseUnits": {
+          "$ref": "#/$defs/d10_uint256"
+        },
+        "unmintedCapacityBaseUnits": {
+          "$ref": "#/$defs/d10_uint256"
+        },
+        "processedThroughRound": {
+          "$ref": "#/$defs/d6_uint64"
+        },
+        "rangeMintedBaseUnits": {
+          "$ref": "#/$defs/d10_uint256"
+        },
+        "rangeCheckpointCount": {
+          "$ref": "#/$defs/d6_uint64"
+        },
+        "nextRound": {
+          "$ref": "#/$defs/d17_nextRound"
+        },
+        "recentCheckpoints": {
+          "type": "array",
+          "maxItems": 12,
+          "items": {
+            "$ref": "#/$defs/d18_checkpoint"
+          }
+        }
+      },
+      "required": [
+        "status",
+        "economy",
+        "supplyCap",
+        "premintBaseUnits",
+        "schedule",
+        "startRound",
+        "startHeight",
+        "miningMintedBaseUnits",
+        "unmintedCapacityBaseUnits",
+        "processedThroughRound",
+        "rangeMintedBaseUnits",
+        "rangeCheckpointCount",
+        "nextRound",
+        "recentCheckpoints"
+      ],
+      "additionalProperties": false
+    },
+    "d12_mining": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "status": {
+              "const": "unavailable"
+            },
+            "reason": {
+              "enum": [
+                "not_configured",
+                "not_yet_safe"
+              ]
+            }
+          },
+          "required": [
+            "status",
+            "reason"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "$ref": "#/$defs/d13_miningAvailable"
+        }
+      ]
+    },
+    "d19_roundMint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "roundId",
+        "endAt",
+        "sqkMintedBaseUnits"
+      ],
+      "properties": {
+        "roundId": {
+          "$ref": "#/$defs/d6_uint64"
+        },
+        "endAt": {
+          "$ref": "#/$defs/d1_timestamp"
+        },
+        "sqkMintedBaseUnits": {
+          "$ref": "#/$defs/d10_uint256"
+        }
+      }
+    },
+    "d20_previousPeriod": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "startAt",
+        "endAt",
+        "sqkMintedBaseUnits"
+      ],
+      "properties": {
+        "startAt": {
+          "$ref": "#/$defs/d1_timestamp"
+        },
+        "endAt": {
+          "$ref": "#/$defs/d1_timestamp"
+        },
+        "sqkMintedBaseUnits": {
+          "$ref": "#/$defs/d10_uint256"
+        }
+      }
+    },
+    "d0_available": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaVersion",
+        "installationId",
+        "status",
+        "range",
+        "generatedAt",
+        "chain",
+        "window",
+        "summary",
+        "recentSettlements",
+        "buckets",
+        "mining"
+      ],
+      "properties": {
+        "schemaVersion": {
+          "const": 3
+        },
+        "installationId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "status": {
+          "const": "available"
+        },
+        "range": {
+          "enum": [
+            "now",
+            "24h",
+            "7d",
+            "30d"
+          ]
+        },
+        "generatedAt": {
+          "$ref": "#/$defs/d1_timestamp"
+        },
+        "chain": {
+          "$ref": "#/$defs/d2_chain"
+        },
+        "window": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/d4_window"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "summary": {
+          "$ref": "#/$defs/d5_summary"
+        },
+        "recentSettlements": {
+          "type": "array",
+          "maxItems": 10,
+          "items": {
+            "$ref": "#/$defs/d7_settlement"
+          }
+        },
+        "buckets": {
+          "type": "array",
+          "maxItems": 30,
+          "items": {
+            "$ref": "#/$defs/d11_bucket"
+          }
+        },
+        "mining": {
+          "$ref": "#/$defs/d12_mining"
+        },
+        "recentRounds": {
+          "type": "array",
+          "maxItems": 42,
+          "items": {
+            "$ref": "#/$defs/d19_roundMint"
+          }
+        },
+        "previousPeriod": {
+          "$ref": "#/$defs/d20_previousPeriod"
+        }
+      }
+    },
+    "d21_unavailable": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaVersion",
+        "installationId",
+        "status",
+        "range",
+        "reason"
+      ],
+      "properties": {
+        "schemaVersion": {
+          "const": 3
+        },
+        "installationId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "status": {
+          "const": "unavailable"
+        },
+        "range": {
+          "enum": [
+            "now",
+            "24h",
+            "7d",
+            "30d"
+          ]
+        },
+        "reason": {
+          "enum": [
+            "indexer_disabled",
+            "not_yet_safe",
+            "indexer_unavailable",
+            "indexer_mismatch"
+          ]
+        }
+      }
+    }
+  },
+  "$comment": "Public structure generated from current packages/module-contracts. See endpoint notes for semantic constraints."
+}

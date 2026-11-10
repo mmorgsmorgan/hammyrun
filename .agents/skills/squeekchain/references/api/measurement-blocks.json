@@ -1,0 +1,433 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "anyOf": [
+    {
+      "type": "object",
+      "properties": {
+        "schemaVersion": {
+          "type": "string",
+          "const": "game-block-projection.v1"
+        },
+        "installationId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "generatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "observedAt": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "receivedAt": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "provenance": {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "hardware",
+                "simulated",
+                "replay",
+                "derived"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "profile": {
+          "type": "string",
+          "enum": [
+            "development",
+            "staging",
+            "shadow",
+            "production"
+          ]
+        },
+        "chain": {
+          "type": "object",
+          "properties": {
+            "chainId": {
+              "type": "string",
+              "pattern": "^(0|[1-9][0-9]*)$"
+            },
+            "coreAddress": {
+              "type": "string",
+              "pattern": "^0x[0-9a-fA-F]{40}$"
+            },
+            "graphManifestDigest": {
+              "type": "string",
+              "pattern": "^0x[0-9a-f]{64}$"
+            }
+          },
+          "required": [
+            "chainId",
+            "coreAddress",
+            "graphManifestDigest"
+          ],
+          "additionalProperties": false
+        },
+        "roundSchedule": {
+          "type": "object",
+          "properties": {
+            "genesisTimestamp": {
+              "type": "string",
+              "pattern": "^(0|[1-9][0-9]*)$"
+            },
+            "roundDurationSeconds": {
+              "type": "number",
+              "const": 600
+            }
+          },
+          "required": [
+            "genesisTimestamp",
+            "roundDurationSeconds"
+          ],
+          "additionalProperties": false
+        },
+        "status": {
+          "type": "string",
+          "const": "available"
+        },
+        "freshness": {
+          "type": "string",
+          "const": "fresh"
+        },
+        "anchor": {
+          "type": "object",
+          "properties": {
+            "cumulativeWork": {
+              "type": "string",
+              "pattern": "^(0|[1-9][0-9]*)$"
+            },
+            "cumulativeBlockUnits": {
+              "type": "string",
+              "pattern": "^(0|[1-9][0-9]*)$"
+            },
+            "blockHeight": {
+              "type": "string",
+              "pattern": "^(0|[1-9][0-9]*)$"
+            },
+            "blockProgress": {
+              "type": "string",
+              "pattern": "^(0|[1-9][0-9]*)$"
+            },
+            "workPerThousandBlocks": {
+              "type": "string",
+              "pattern": "^(0|[1-9][0-9]*)$"
+            },
+            "settledThroughRound": {
+              "type": "string",
+              "pattern": "^(0|[1-9][0-9]*)$"
+            },
+            "confirmedAt": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "transactionHash": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^0x[0-9a-fA-F]{64}$"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "cumulativeWork",
+            "cumulativeBlockUnits",
+            "blockHeight",
+            "blockProgress",
+            "workPerThousandBlocks",
+            "settledThroughRound",
+            "confirmedAt",
+            "transactionHash"
+          ],
+          "additionalProperties": false
+        },
+        "projected": {
+          "type": "object",
+          "properties": {
+            "cumulativeWork": {
+              "type": "string",
+              "pattern": "^(0|[1-9][0-9]*)$"
+            },
+            "cumulativeBlockUnits": {
+              "type": "string",
+              "pattern": "^(0|[1-9][0-9]*)$"
+            },
+            "blockHeight": {
+              "type": "string",
+              "pattern": "^(0|[1-9][0-9]*)$"
+            },
+            "blockProgress": {
+              "type": "string",
+              "pattern": "^(0|[1-9][0-9]*)$"
+            },
+            "workPerThousandBlocks": {
+              "type": "string",
+              "pattern": "^(0|[1-9][0-9]*)$"
+            }
+          },
+          "required": [
+            "cumulativeWork",
+            "cumulativeBlockUnits",
+            "blockHeight",
+            "blockProgress",
+            "workPerThousandBlocks"
+          ],
+          "additionalProperties": false
+        },
+        "blocks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "height": {
+                "type": "string",
+                "pattern": "^(0|[1-9][0-9]*)$"
+              },
+              "workThreshold": {
+                "type": "string",
+                "pattern": "^(0|[1-9][0-9]*)$"
+              },
+              "roundId": {
+                "type": "string",
+                "pattern": "^(0|[1-9][0-9]*)$"
+              },
+              "completingAt": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "height",
+              "workThreshold",
+              "roundId",
+              "completingAt"
+            ],
+            "additionalProperties": false
+          },
+          "maxItems": 120
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "installationId",
+        "generatedAt",
+        "revision",
+        "observedAt",
+        "receivedAt",
+        "provenance",
+        "profile",
+        "chain",
+        "roundSchedule",
+        "status",
+        "freshness",
+        "anchor",
+        "projected",
+        "blocks"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "schemaVersion": {
+          "type": "string",
+          "const": "game-block-projection.v1"
+        },
+        "installationId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "generatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "observedAt": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "receivedAt": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "provenance": {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "hardware",
+                "simulated",
+                "replay",
+                "derived"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "profile": {
+          "type": "string",
+          "enum": [
+            "development",
+            "staging",
+            "shadow",
+            "production"
+          ]
+        },
+        "chain": {
+          "type": "object",
+          "properties": {
+            "chainId": {
+              "type": "string",
+              "pattern": "^(0|[1-9][0-9]*)$"
+            },
+            "coreAddress": {
+              "type": "string",
+              "pattern": "^0x[0-9a-fA-F]{40}$"
+            },
+            "graphManifestDigest": {
+              "type": "string",
+              "pattern": "^0x[0-9a-f]{64}$"
+            }
+          },
+          "required": [
+            "chainId",
+            "coreAddress",
+            "graphManifestDigest"
+          ],
+          "additionalProperties": false
+        },
+        "roundSchedule": {
+          "type": "object",
+          "properties": {
+            "genesisTimestamp": {
+              "type": "string",
+              "pattern": "^(0|[1-9][0-9]*)$"
+            },
+            "roundDurationSeconds": {
+              "type": "number",
+              "const": 600
+            }
+          },
+          "required": [
+            "genesisTimestamp",
+            "roundDurationSeconds"
+          ],
+          "additionalProperties": false
+        },
+        "status": {
+          "type": "string",
+          "const": "unavailable"
+        },
+        "freshness": {
+          "type": "string",
+          "enum": [
+            "fresh",
+            "stale",
+            "unavailable"
+          ]
+        },
+        "reason": {
+          "type": "string",
+          "enum": [
+            "no_measurement",
+            "counter_fault",
+            "counter_epoch_unapproved",
+            "round_projection_gap",
+            "oracle_head_unavailable",
+            "round_ineligible",
+            "stale_measurement",
+            "unhealthy_measurement",
+            "unhealthy_settlement",
+            "projection_lead_exceeded",
+            "projection_inconsistent"
+          ]
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "installationId",
+        "generatedAt",
+        "revision",
+        "observedAt",
+        "receivedAt",
+        "provenance",
+        "profile",
+        "chain",
+        "roundSchedule",
+        "status",
+        "freshness",
+        "reason"
+      ],
+      "additionalProperties": false
+    }
+  ],
+  "$defs": {},
+  "$comment": "Public structure generated from current packages/module-contracts. See endpoint notes for semantic constraints."
+}

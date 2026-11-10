@@ -1,0 +1,478 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/d0_unavailable"
+    },
+    {
+      "$ref": "#/$defs/d1_available"
+    }
+  ],
+  "$defs": {
+    "d0_unavailable": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaVersion",
+        "installationId",
+        "status",
+        "reason"
+      ],
+      "properties": {
+        "schemaVersion": {
+          "const": 1
+        },
+        "installationId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "status": {
+          "const": "unavailable"
+        },
+        "reason": {
+          "enum": [
+            "indexer_disabled",
+            "not_yet_safe",
+            "indexer_unavailable",
+            "indexer_mismatch"
+          ]
+        }
+      }
+    },
+    "d2_decimal": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)$",
+      "format": "uint256-decimal"
+    },
+    "d3_address": {
+      "type": "string",
+      "pattern": "^0x[0-9a-f]{40}$"
+    },
+    "d4_bytes32": {
+      "type": "string",
+      "pattern": "^0x[0-9a-f]{64}$"
+    },
+    "d5_workPerThousandBlocks": {
+      "type": "string",
+      "format": "uint64-decimal",
+      "minLength": 4,
+      "maxLength": 10
+    },
+    "d6_uint64": {
+      "type": "string",
+      "format": "uint64-decimal"
+    },
+    "d7_blockProgress": {
+      "type": "string",
+      "format": "uint64-decimal",
+      "maxLength": 9
+    },
+    "d8_blockUnits": {
+      "type": "string",
+      "format": "uint96-decimal"
+    },
+    "d9_eventName": {
+      "enum": [
+        "SqueekDeploymentCreated",
+        "CoreInitialized",
+        "ReporterUpdated",
+        "RoundRecorded",
+        "BatchSettled",
+        "Initialized",
+        "Upgraded",
+        "AdminChanged",
+        "Paused",
+        "Unpaused",
+        "OwnershipTransferred",
+        "CallScheduled",
+        "CallExecuted",
+        "Cancelled"
+      ]
+    },
+    "d11_eventArgument": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "value"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "boolean"
+            }
+          ]
+        }
+      }
+    },
+    "d10_event": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "contractKind",
+        "contractAddress",
+        "eventName",
+        "blockNumber",
+        "blockHash",
+        "blockTimestamp",
+        "transactionHash",
+        "transactionIndex",
+        "logIndex",
+        "arguments"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "contractKind": {
+          "enum": [
+            "factory",
+            "core",
+            "proxy",
+            "proxyAdmin",
+            "timelock"
+          ]
+        },
+        "contractAddress": {
+          "$ref": "#/$defs/d3_address"
+        },
+        "eventName": {
+          "$ref": "#/$defs/d9_eventName"
+        },
+        "blockNumber": {
+          "$ref": "#/$defs/d2_decimal"
+        },
+        "blockHash": {
+          "$ref": "#/$defs/d4_bytes32"
+        },
+        "blockTimestamp": {
+          "$ref": "#/$defs/d2_decimal"
+        },
+        "transactionHash": {
+          "$ref": "#/$defs/d4_bytes32"
+        },
+        "transactionIndex": {
+          "$ref": "#/$defs/d2_decimal"
+        },
+        "logIndex": {
+          "$ref": "#/$defs/d2_decimal"
+        },
+        "arguments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/d11_eventArgument"
+          }
+        }
+      }
+    },
+    "d1_available": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaVersion",
+        "installationId",
+        "status",
+        "chain",
+        "identities",
+        "configuration",
+        "core",
+        "implementation",
+        "governance",
+        "source",
+        "events"
+      ],
+      "properties": {
+        "schemaVersion": {
+          "const": 1
+        },
+        "installationId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "status": {
+          "const": "available"
+        },
+        "chain": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "target",
+            "chainId",
+            "confirmations",
+            "deploymentBlock",
+            "indexedThroughBlock",
+            "safeThroughBlock"
+          ],
+          "properties": {
+            "target": {
+              "enum": [
+                "anvil",
+                "sepolia",
+                "mainnet"
+              ]
+            },
+            "chainId": {
+              "$ref": "#/$defs/d2_decimal"
+            },
+            "confirmations": {
+              "const": "12"
+            },
+            "deploymentBlock": {
+              "$ref": "#/$defs/d2_decimal"
+            },
+            "indexedThroughBlock": {
+              "$ref": "#/$defs/d2_decimal"
+            },
+            "safeThroughBlock": {
+              "$ref": "#/$defs/d2_decimal"
+            }
+          }
+        },
+        "identities": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "factory",
+            "core",
+            "proxyAdmin",
+            "proxyAdminOwner",
+            "operatorTimelock",
+            "operatorProposer",
+            "proxyImplementation",
+            "proxyAdminSlot"
+          ],
+          "properties": {
+            "factory": {
+              "$ref": "#/$defs/d3_address"
+            },
+            "core": {
+              "$ref": "#/$defs/d3_address"
+            },
+            "proxyAdmin": {
+              "$ref": "#/$defs/d3_address"
+            },
+            "proxyAdminOwner": {
+              "$ref": "#/$defs/d3_address"
+            },
+            "operatorTimelock": {
+              "$ref": "#/$defs/d3_address"
+            },
+            "operatorProposer": {
+              "$ref": "#/$defs/d3_address"
+            },
+            "proxyImplementation": {
+              "$ref": "#/$defs/d3_address"
+            },
+            "proxyAdminSlot": {
+              "$ref": "#/$defs/d3_address"
+            }
+          }
+        },
+        "configuration": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "streamId",
+            "genesisTimestamp",
+            "roundDuration",
+            "maxWorkPerRound",
+            "maxRoundsPerBatch",
+            "guardian",
+            "reporter",
+            "initialWorkPerThousandBlocks",
+            "targetBlocksPerActiveRound",
+            "difficultySmoothingRounds",
+            "blockUnitsPerBlock"
+          ],
+          "properties": {
+            "streamId": {
+              "$ref": "#/$defs/d4_bytes32"
+            },
+            "genesisTimestamp": {
+              "$ref": "#/$defs/d2_decimal"
+            },
+            "roundDuration": {
+              "$ref": "#/$defs/d2_decimal"
+            },
+            "maxWorkPerRound": {
+              "$ref": "#/$defs/d2_decimal"
+            },
+            "maxRoundsPerBatch": {
+              "$ref": "#/$defs/d2_decimal"
+            },
+            "guardian": {
+              "$ref": "#/$defs/d3_address"
+            },
+            "reporter": {
+              "$ref": "#/$defs/d3_address"
+            },
+            "initialWorkPerThousandBlocks": {
+              "$ref": "#/$defs/d5_workPerThousandBlocks"
+            },
+            "targetBlocksPerActiveRound": {
+              "const": "40"
+            },
+            "difficultySmoothingRounds": {
+              "const": "30"
+            },
+            "blockUnitsPerBlock": {
+              "const": "1000000000"
+            }
+          }
+        },
+        "core": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "settledThroughRound",
+            "cumulativeWork",
+            "blockHeight",
+            "blockProgress",
+            "workPerThousandBlocks",
+            "authorizationNonce",
+            "paused",
+            "cumulativeBlockUnits"
+          ],
+          "properties": {
+            "settledThroughRound": {
+              "$ref": "#/$defs/d6_uint64"
+            },
+            "cumulativeWork": {
+              "$ref": "#/$defs/d6_uint64"
+            },
+            "blockHeight": {
+              "$ref": "#/$defs/d6_uint64"
+            },
+            "blockProgress": {
+              "$ref": "#/$defs/d7_blockProgress"
+            },
+            "workPerThousandBlocks": {
+              "$ref": "#/$defs/d5_workPerThousandBlocks"
+            },
+            "authorizationNonce": {
+              "$ref": "#/$defs/d2_decimal"
+            },
+            "paused": {
+              "type": "boolean"
+            },
+            "cumulativeBlockUnits": {
+              "$ref": "#/$defs/d8_blockUnits"
+            }
+          }
+        },
+        "implementation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "codeAddress",
+            "codeVersion",
+            "storageLayoutDigest",
+            "runtimeHash"
+          ],
+          "properties": {
+            "codeAddress": {
+              "$ref": "#/$defs/d3_address"
+            },
+            "codeVersion": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "storageLayoutDigest": {
+              "$ref": "#/$defs/d4_bytes32"
+            },
+            "runtimeHash": {
+              "$ref": "#/$defs/d4_bytes32"
+            }
+          }
+        },
+        "governance": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "operationId",
+            "operationKind",
+            "operationState"
+          ],
+          "properties": {
+            "operationId": {
+              "$ref": "#/$defs/d4_bytes32"
+            },
+            "operationKind": {
+              "enum": [
+                "None",
+                "Upgrade",
+                "Conflict"
+              ]
+            },
+            "operationState": {
+              "enum": [
+                "None",
+                "Pending",
+                "Executed",
+                "Cancelled",
+                "Conflict"
+              ]
+            }
+          }
+        },
+        "source": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "eventName",
+            "blockNumber",
+            "blockHash",
+            "blockTimestamp",
+            "transactionHash",
+            "transactionIndex",
+            "logIndex"
+          ],
+          "properties": {
+            "eventName": {
+              "$ref": "#/$defs/d9_eventName"
+            },
+            "blockNumber": {
+              "$ref": "#/$defs/d2_decimal"
+            },
+            "blockHash": {
+              "$ref": "#/$defs/d4_bytes32"
+            },
+            "blockTimestamp": {
+              "$ref": "#/$defs/d2_decimal"
+            },
+            "transactionHash": {
+              "$ref": "#/$defs/d4_bytes32"
+            },
+            "transactionIndex": {
+              "$ref": "#/$defs/d2_decimal"
+            },
+            "logIndex": {
+              "$ref": "#/$defs/d2_decimal"
+            }
+          }
+        },
+        "events": {
+          "type": "array",
+          "maxItems": 25,
+          "items": {
+            "$ref": "#/$defs/d10_event"
+          }
+        }
+      }
+    }
+  },
+  "$comment": "Public structure generated from current packages/module-contracts. See endpoint notes for semantic constraints."
+}

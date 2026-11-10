@@ -1,0 +1,265 @@
+[
+  {
+    "type": "constructor",
+    "inputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "pageValidator",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "renderSVG",
+    "inputs": [
+      {
+        "name": "page",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "seed",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      },
+      {
+        "name": "tokenId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "string",
+        "internalType": "string"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "renderSVGForPinnedPage",
+    "inputs": [
+      {
+        "name": "page",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "codehash",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      },
+      {
+        "name": "seed",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      },
+      {
+        "name": "tokenId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "string",
+        "internalType": "string"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "rendererId",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "stateMutability": "pure"
+  },
+  {
+    "type": "function",
+    "name": "rendererVersion",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "string",
+        "internalType": "string"
+      }
+    ],
+    "stateMutability": "pure"
+  },
+  {
+    "type": "function",
+    "name": "resolvedFieldHash",
+    "inputs": [
+      {
+        "name": "page",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "seed",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      },
+      {
+        "name": "tokenId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "tokenURI",
+    "inputs": [
+      {
+        "name": "page",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "seed",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      },
+      {
+        "name": "tokenId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "string",
+        "internalType": "string"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "tokenURIForPinnedPage",
+    "inputs": [
+      {
+        "name": "page",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "codehash",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      },
+      {
+        "name": "seed",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      },
+      {
+        "name": "tokenId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "string",
+        "internalType": "string"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "traitWord",
+    "inputs": [
+      {
+        "name": "page",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "seed",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      },
+      {
+        "name": "tokenId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "validatePage",
+    "inputs": [
+      {
+        "name": "page",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "pageHash",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      },
+      {
+        "name": "assetSetHash",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "error",
+    "name": "DotGridInvalid",
+    "inputs": [
+      {
+        "name": "code",
+        "type": "uint16",
+        "internalType": "uint16"
+      }
+    ]
+  }
+]

@@ -1,0 +1,9 @@
+node_modules
+data
+test-results
+.git
+.env
+.env.*
+dist
+*.tsbuildinfo
+*.log

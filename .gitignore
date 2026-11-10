@@ -1,0 +1,15 @@
+node_modules/
+dist/
+data/
+.env
+.env.*
+!.env.example
+.vercel/
+test-results/
+*.tsbuildinfo
+*.log
+*.sqlite
+*.sqlite-*
+*.db
+*.db-*
+.DS_Store

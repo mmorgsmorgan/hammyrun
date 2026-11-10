@@ -1,0 +1,64 @@
+[
+  {
+    "type": "function",
+    "name": "validate",
+    "inputs": [
+      {
+        "name": "page",
+        "type": "bytes",
+        "internalType": "bytes"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "tuple",
+        "internalType": "struct DotGridTypes.Layout",
+        "components": [
+          {
+            "name": "widthPx",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "heightPx",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "unitsPerPixel",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "emitterCount",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "start",
+            "type": "uint256[11]",
+            "internalType": "uint256[11]"
+          },
+          {
+            "name": "length",
+            "type": "uint256[11]",
+            "internalType": "uint256[11]"
+          }
+        ]
+      }
+    ],
+    "stateMutability": "pure"
+  },
+  {
+    "type": "error",
+    "name": "DotGridInvalid",
+    "inputs": [
+      {
+        "name": "code",
+        "type": "uint16",
+        "internalType": "uint16"
+      }
+    ]
+  }
+]

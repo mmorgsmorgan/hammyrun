@@ -1,0 +1,11 @@
+{
+  "chainId": 11155111,
+  "address": "0xa20e79fcb0e08e33e424c2521ed9472e051b421c",
+  "token": "0x90efd23244e00a991c0f28a059858718fa04ee0e",
+  "owner": "0xB804d506d5446b1A3BeBEfC903D84F754973C2D2",
+  "transactionHash": "0x535b737301982c899fc3ac33758a9930e369761042606cbbaa9f094358ab944e",
+  "deploymentBlock": "12106533",
+  "runtimeHash": "0x71dac5f963a906084ba85991236258cde2843b299b3aa7d0247450c1477f91cf",
+  "verifiedBlock": "12106656",
+  "blockHash": "0xf26791b9dbe6f060da28a59653986e0c47b82b9c88d5ef51f5277964753fe292"
+}

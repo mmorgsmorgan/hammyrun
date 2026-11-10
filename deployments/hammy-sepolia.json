@@ -1,0 +1,12 @@
+{
+  "chainId": 11155111,
+  "contract": "HammyRewards",
+  "address": "0x90eFD23244E00A991c0F28A059858718fA04ee0e",
+  "owner": "0xB804d506d5446b1A3BeBEfC903D84F754973C2D2",
+  "runtimeHash": "0x70e35febd28b079bd48b7b26e37c8583505028b704f8af8ee50688eb332bffb1",
+  "lockSeconds": 600,
+  "tokenPerPoint": "10000000000000000",
+  "cap": "10000000000000000000000000",
+  "verifiedAtBlock": "12104302",
+  "verifiedBlockHash": "0xcc28630c0479aa1035f3d593d2ca9945f72d61ad4e39c4885d2441dbf0b62f05"
+}
